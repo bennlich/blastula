@@ -53,6 +53,7 @@ NULL
 #' @rdname credential_helpers
 #' @export
 creds <- function(user = NULL,
+                  password = NULL,
                   provider = NULL,
                   sender_name = NULL,
                   host = NULL,
@@ -61,9 +62,10 @@ creds <- function(user = NULL,
 
   # Create a credentials list from the function inputs
   creds_list <-
-    create_credentials_list(
-      provider = provider,
+    create_credentials_list_with_prompt(
       user = user,
+      password = password,
+      provider = provider,
       sender_name = sender_name,
       host = host,
       port = port,
