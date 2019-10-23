@@ -9,9 +9,11 @@
 #' @param file_path The path for the file to be attached.
 #' @param error_on_missing An option to stop with an error if the file cannot be
 #'   located on disk. By default this is set to `TRUE`.
+#' @param disposition Can be 'inline' or 'attachment'. Default is 'inline'.
 #' @export
 add_attachment <- function(email,
                            file_path,
+                           disposition = 'inline',
                            error_on_missing = TRUE) {
 
   # Get the expanded path for the file
@@ -28,7 +30,7 @@ add_attachment <- function(email,
   attachment_list <-
     create_attachment_list(
       file_path = expanded_path,
-      disposition = no_options()
+      disposition = disposition
     )
 
   # Add the attachment list to `email$attachments`

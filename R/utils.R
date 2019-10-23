@@ -225,9 +225,12 @@ create_attachment_args_vec <- function(email) {
     attach_args <-
       list(
         `attach` = no_options(),
-        `-file` = email$attachments[[i]]$file_path,
-        `-inline` = no_options()
+        `-file` = email$attachments[[i]]$file_path
       )
+
+    if (email$attachments[[i]]$disposition == 'inline') {
+      attach_args$`-inline` <- no_options()
+    }
 
     # Clean up arguments and options; create the
     # vector that's needed for `processx::run()`
